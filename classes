@@ -1,0 +1,32 @@
+class Hotel:
+    def __init__(self, nome, endereco, cep):
+        self.nome = nome
+        self.endereco = endereco
+        self.cep = cep
+        self.clientes = {}
+        self.reservas = {"DELUXE": 0, "CASAL": 0, "SOLTEIRO": 0}
+
+    def cadastrarCliente(self, id, nome, cpf, telefone):
+        self.clientes[id] = {"Nome": nome, "CPF": cpf, "Telefone": telefone}
+
+    def listarClientes(self):
+        for id, cliente in self.clientes.items():
+            print(f"ID: {id}, Nome: {cliente['Nome']}, CPF: {cliente['CPF']}, Telefone: {cliente['Telefone']}")
+
+    def fazerReserva(self, tipo_quarto):
+        if tipo_quarto in self.reservas and self.reservas[tipo_quarto] > 0:
+            self.reservas[tipo_quarto] -= 1
+            return True
+        else:
+            return False
+
+    def listarReservas(self):
+        for tipo_quarto, quantidade in self.reservas.items():
+            print(f"Tipo de Quarto: {tipo_quarto}, Reservas Disponíveis: {quantidade}")
+
+class Quarto:
+    def __init__(self, quantidade, capacidade, valor, descricao):
+        self.quantidade = quantidade
+        self.capacidade = capacidade
+        self.valor = valor
+        self.descricao = descricao
